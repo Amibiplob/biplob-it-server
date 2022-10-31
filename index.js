@@ -5,9 +5,7 @@ app.use(cors());
 
 const Port = process.env.Port || 5000;
 
-
 const data =require('./data/fakeDB.json');
-
 
 
 app.get('/', (req ,res) =>{
@@ -16,16 +14,16 @@ app.get('/', (req ,res) =>{
 app.get('/:id', (req ,res) =>{
     const id = req.params.id;
     const getSingleData = data?.find(SD => SD.id == id);
-
+if(!getSingleData){
+    res.send("No Data Found!!")
+}
     res.send(getSingleData);
 });
-
-
-
-
-
 
 
 app.listen(Port , () =>{
     console.log('server is working' , Port);
 });
+
+
+module.exports = app;
