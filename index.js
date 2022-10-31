@@ -13,6 +13,12 @@ const data =require('./data/fakeDB.json');
 app.get('/', (req ,res) =>{
     res.send(data);
 });
+app.get('/:id', (req ,res) =>{
+    const id = req.params.id;
+    const getSingleData = data?.find(SD => SD.id == id);
+
+    res.send(getSingleData);
+});
 
 
 
